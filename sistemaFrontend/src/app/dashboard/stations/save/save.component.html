@@ -1,0 +1,39 @@
+<div class="station-card">
+    <mat-card appearance="outlined">
+        <mat-card-title>Complete los datos</mat-card-title>
+        <mat-card-content>
+            <form [formGroup]="stationForm">
+
+                <div>
+                    <mat-form-field>
+                        <mat-label>Nombre de la estación</mat-label>
+                        <input matInput placeholder="Nombre de la estación" formControlName="name" required>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field>
+                        <mat-label>Link</mat-label>
+                        <input matInput placeholder="Link" formControlName="link" required>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field>
+                        <mat-label>Categorias</mat-label>
+                        <input matInput placeholder="Categorias" formControlName="categories" required>
+                    </mat-form-field>
+                </div>
+
+                <div class="center-div">
+                    <button type="button" class="button-back" mat-flat-button (click)="returnBack()"
+                        [disabled]="(loading$ | async)"><mat-icon>arrow_back</mat-icon> Volver</button>
+                    <button mat-flat-button class="steps-button" (click)="submitForm()"
+                        [disabled]="(loading$ | async)"><mat-icon>save</mat-icon>
+                        Guardar</button>
+                </div>
+            </form>
+
+        </mat-card-content>
+    </mat-card>
+</div>

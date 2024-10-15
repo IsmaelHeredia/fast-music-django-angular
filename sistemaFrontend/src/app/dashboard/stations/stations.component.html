@@ -1,0 +1,90 @@
+<div class="left-btn buttons-stations">
+    <button class="button-icon" routerLink="/player/stations/save" mat-fab>
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+
+<div class="right-btn buttons-stations">
+
+    <input type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+
+    <button mat-mini-fab color="primary" class="button-icon upload-btn" (click)="fileUpload.click()" matTooltip="Importar">
+        <mat-icon>upload_file</mat-icon>
+    </button>
+
+    <button class="button-icon" (click)="export()" mat-fab matTooltip="Exportar">
+        <mat-icon>download</mat-icon>
+    </button>
+
+    <button class="button-icon" (click)="validate()" mat-fab matTooltip="Validar">
+        <mat-icon>wifi</mat-icon>
+    </button>
+</div>
+
+<div class="contenedor">
+
+    <mat-divider class="divider-espacio"></mat-divider>
+
+    <form [formGroup]="filterForm" (ngSubmit)="filterStations()">
+        <div class="center-div">
+            <mat-form-field class="stations-filter">
+                <mat-label>Ingrese nombre</mat-label>
+                <input matInput placeholder="Nombre" formControlName="buscarNombre" />
+            </mat-form-field>
+            <button class="button-filter" type="submit" mat-flat-button><mat-icon>search</mat-icon> Filtrar</button>
+            <button class="button-filter" type="button" mat-flat-button
+                (click)="clearFilter()"><mat-icon>close</mat-icon> Borrar</button>
+        </div>
+    </form>
+
+    <div *ngIf="(loading$ | async)" class="loading-indicator cargando">
+        <mat-spinner></mat-spinner>
+    </div>
+    
+    <div *ngIf="!(loading$ | async) && (stations.length == 0)" class="center-div stations-not-found">
+        <h5>No se encontro ninguna estación disponible</h5>
+    </div>
+
+    <div class="scrollbar-stations" *ngIf="!(loading$ | async) && (stations.length > 0)">
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="stations" class="mat-elevation-z8" style="width: 100%;">
+
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                    <td mat-cell *matCellDef="let station"> {{station.name | slice:0:20}}<span
+                            ng-show="station.name.length > 20">...</span></td>
+                </ng-container>
+
+                <ng-container matColumnDef="link">
+                    <th mat-header-cell *matHeaderCellDef>Link</th>
+                    <td mat-cell *matCellDef="let station"> {{station.link}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="categories">
+                    <th mat-header-cell *matHeaderCellDef>Categorias</th>
+                    <td mat-cell *matCellDef="let station"> {{station.categories}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="option">
+                    <th mat-header-cell *matHeaderCellDef class="opcion-table">Opción</th>
+                    <td mat-cell *matCellDef="let station">
+                        <button class="button-icon-table" (click)="playStation(station.id,station.link)" mat-fab>
+                            <mat-icon>{{ (is_playing && current_id_station == station.id) ? 'stop' : 'play_arrow'
+                                }}</mat-icon>
+                        </button>
+                        <button class="button-icon-table" routerLink="/player/stations/{{station.id}}/edit" mat-fab>
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button class="button-icon-table" (click)="openDialogConfirmDelete(station.id,station.name)"
+                            mat-fab>
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,145 @@
+<mat-toolbar class="center-div search-name">
+    <form [formGroup]="filterForm" (ngSubmit)="searchSongName()" class="filter-name-playlist">
+        <div>
+            <mat-form-field>
+                <mat-label>Buscar canciones por nombre</mat-label>
+                <input matInput formControlName="name">
+                <button type="button" mat-icon-button matSuffix (click)="cleanFilterSongName()">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+    </form>
+</mat-toolbar>
+
+<mat-toolbar class="center-div filter-playlists">
+
+    <mat-form-field class="playlist-list">
+
+        <mat-label>Playlists</mat-label>
+
+        <mat-chip-grid #chipGrid>
+            @for (playlist of playlists_selected_chips; track playlist) {
+            <mat-chip-row (removed)="removePlaylist(playlist)">
+                {{playlist.name}}
+                <button matChipRemove>
+                    <mat-icon>cancel</mat-icon>
+                </button>
+            </mat-chip-row>
+            }
+            <b class="chips-limit" *ngIf="chipsLimit == true">+ {{ chipsNumberLimit }}</b>
+        </mat-chip-grid>
+
+        <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
+            <mat-option *ngFor="let playlist of filterPlaylists" [value]="playlists_selected"
+                (click)="addPlaylist(playlist)">
+                <mat-checkbox color="primary" style="padding: 0 12px;"
+                    [checked]="playlists_selected.indexOf(playlist) >= 0"></mat-checkbox>
+                {{playlist.name}}
+            </mat-option>
+        </mat-autocomplete>
+
+        <input [formControl]="myControl" placeholder="Select playlist" [matAutocomplete]="auto"
+            [matChipInputFor]="chipGrid" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur" (input)="filterPlaylistsByName($event)">
+
+        <button type="button" mat-icon-button matSuffix (click)="cleanPlaylists()">
+            <mat-icon>delete</mat-icon>
+        </button>
+
+    </mat-form-field>
+
+</mat-toolbar>
+
+<div class="scrollbar-playlists" *ngIf="!(loading$ | async)">
+    @for (playlist of playlists_selected; track playlist) {
+    <mat-accordion class="playlists-player" multi>
+        <mat-expansion-panel class="panel-playlist" [expanded]="current_id_playlist == playlist.id">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon class="icon-playlist">
+                        {{
+                        (current_id_playlist == playlist.id) ? 'queue_music' : 'folder'
+                        }}
+                    </mat-icon>
+                    {{playlist.name}}
+                </mat-panel-title>
+                <mat-panel-description>
+                    {{playlist.songs.length}} canciones disponibles
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            @for (song of playlist.songs; track song) {
+            <mat-list-item
+                class="{{ (is_playing && song.id == current_id_song) ? 'selected-song selection-song' : 'item-song selection-song'}}"
+                (dblclick)="doubleClickSong(playlist.id,song.id)">
+                <mat-icon matListItemIcon>
+                    {{
+                    (is_playing && song.id == current_id_song) ? 'play_arrow' : (song.favorite == 1) ? 'favorite' :
+                    'music_note'
+                    }}
+                </mat-icon>
+                <div matListItemTitle>{{song.title}}</div>
+            </mat-list-item>
+            }
+
+        </mat-expansion-panel>
+    </mat-accordion>
+    }
+    <div *ngIf="(loading$ | async)" class="loading-indicator">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div *ngIf="!(loading$ | async) && (playlists_selected.length == 0)" class="center-div playlist-not-found">
+        <h5>No se encontro ninguna playlist seleccionada</h5>
+    </div>
+</div>
+
+<div class="player">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span class="title-song">{{ title_song }}</span>
+            <div class="parent">
+                <div class="children right-children">
+                    <span class="duration-song">{{currentTime}} / {{musicLength}}</span>
+                </div>
+            </div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-toolbar class="center-div">
+        <mat-slider class="slider-timeseek" [min]="0" [max]="max_song">
+            <input matSliderThumb [(ngModel)]="time_seek" (input)="onSliderChangeEnd($event)" [disabled]="!is_playing"
+                #slider>
+        </mat-slider>
+    </mat-toolbar>
+
+    <mat-toolbar class="center-div">
+
+        <button class="button-mat button-player button-previous" mat-fab (click)="favorite()" [disabled]="!is_playing">
+            <mat-icon
+                class="{{ (current_song_favorite == 1) ? 'icon-2x orange-icon' : 'icon-2x white-icon'}}">favorite</mat-icon>
+        </button>
+
+        <button class="button-mat button-player button-previous" mat-fab (click)="prev()" [disabled]="!is_playing">
+            <mat-icon class="icon-2x">skip_previous</mat-icon>
+        </button>
+
+        <button class="button-mat button-player button-play" mat-fab (click)="play()"
+            [disabled]="!is_playing && !is_paused">
+            <mat-icon class="icon-2x">{{ is_playing ? 'stop' : 'play_arrow' }}</mat-icon>
+        </button>
+
+        <button class="button-mat button-player button-next" mat-fab (click)="next()" [disabled]="!is_playing">
+            <mat-icon class="icon-2x">skip_next</mat-icon>
+        </button>
+
+        <button class="button-mat button-player button-previous" mat-fab (click)="repeat()">
+            <mat-icon class="icon-2x">{{ mode_repeat ? 'repeat_one' : 'repeat' }}</mat-icon>
+        </button>
+
+        <mat-slider class="slider-volume" [min]="0" [max]="100" (input)="onVolumeChange()">
+            <input matSliderThumb [(ngModel)]="volume" #slider>
+        </mat-slider>
+
+    </mat-toolbar>
+</div>

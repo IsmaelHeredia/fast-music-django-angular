@@ -1,0 +1,8 @@
+<h2 mat-dialog-title class="modal-title">Confirmación</h2>
+<mat-dialog-content class="mat-typography center-div">
+  <p class="modal-text">{{ data.content }}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Continuar</button>
+</mat-dialog-actions>

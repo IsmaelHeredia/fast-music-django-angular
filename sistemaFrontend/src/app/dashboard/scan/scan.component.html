@@ -1,0 +1,24 @@
+<div class="scan-card">
+    <mat-card appearance="outlined">
+        <mat-card-title>Escaneo de canciones</mat-card-title>
+        <mat-card-content>
+            <form [formGroup]="scanForm" (ngSubmit)="submitForm()">
+                <div>
+                    <mat-form-field>
+                        <mat-label>Carpeta local</mat-label>
+                        <input matInput placeholder="Carpeta local" formControlName="song_directory" required />
+                        <mat-error *ngIf="scanForm?.get('song_directory')?.invalid">
+                            La carpeta es obligatoria
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="button center-div">
+                    <button class="button-save" type="submit" mat-flat-button
+                        [disabled]="(loading$ | async)"><mat-icon>save</mat-icon> Guardar</button>
+                    <button type="button" (click)="scan()" mat-flat-button
+                        [disabled]="(loading$ | async)"><mat-icon>library_music</mat-icon> Escanear</button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

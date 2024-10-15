@@ -1,0 +1,139 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "@angular/material/prebuilt-themes/cyan-orange.css";
+
+@import 'ngx-toastr/toastr';
+
+.toast-bottom-center.toast-container {
+    margin-bottom: 20px;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 18px;
+    font-weight: 500 !important;
+}
+
+.center-div {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.icon-item {
+    -webkit-text-fill-color: #00dddd;
+}
+
+.title-menu {
+    background-color: #004F4F !important;
+}
+
+.button-icon-table {
+    color: #324b4b !important;
+    background-color: #00dddd !important;
+    height: 35px !important;
+    margin-top: 5px !important;
+    margin-right: 5px !important;
+}
+
+.button-icon {
+    color: #324b4b !important;
+    background-color: #00dddd !important;
+    width: 40px !important;
+    height: 40px !important;
+    margin-right: 10px !important;
+}
+
+.button-theme {
+    color: #324b4b !important;
+    background-color: #00dddd !important;
+    width: 40px !important;
+    height: 40px !important;
+    margin-right: 10px !important;
+    position: absolute;
+    right: 0;
+}
+
+.icon-2x {
+    transform: scale(2);
+}
+
+.icon-3x {
+    transform: scale(3);
+}
+
+.is-active {
+    background-color: #163635 !important;
+}
+
+mat-progress-bar.mat-mdc-progress-bar {
+    --mdc-linear-progress-active-indicator-color: #ffabf3;
+    --mdc-linear-progress-track-color: #5b005b;
+    --mdc-linear-progress-active-indicator-height: 12px;
+    --mdc-linear-progress-track-height: 12px;
+}
+
+.imagen {
+    height: 100px;
+    width: 100px;
+}
+
+.button-back {
+    margin-right: 10px;
+}
+
+.red {
+    color: #cc241d;
+}
+
+.green {
+    color: #98971a;
+}
+
+.orange {
+    color: #d79921;
+}
+
+.is-selected {
+    background-color: #163635;
+    margin: 0.5 1.5em 0.5em 0.5em;
+    padding: 1em 0;
+}
+
+.modal-text {
+    text-align: center;
+    font-size: 23px !important;
+}
+
+.modal-title {
+    text-align: center;
+    font-size: 40px !important;
+}
+
+.button-mat {
+    color: #324b4b !important;
+    background-color: #00dddd !important;
+}
+
+.white-icon {
+    color: #324b4b;
+}
+
+.orange-icon {
+    color: #ebbf59;
+}
+
+.item-song:hover {
+    background-color: #2D3131;
+}
+
+.selected-song {
+    background-color: #262929;
+}
+
+.selected-playlist {
+    background-color: #262929;
+}

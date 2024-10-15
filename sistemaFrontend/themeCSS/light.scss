@@ -1,0 +1,159 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "@angular/material/prebuilt-themes/azure-blue.css";
+
+@import 'ngx-toastr/toastr';
+
+.toast-bottom-center.toast-container {
+    margin-bottom: 20px;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 18px;
+    font-weight: 500 !important;
+}
+
+.center-div {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.icon-item {
+    -webkit-text-fill-color: #005cbb;
+}
+
+.title-menu {
+    background-color: #D7E3FF !important;
+}
+
+.button-icon-table {
+    color: #e0e2ec !important;
+    background-color: #005cbb !important;
+    height: 35px !important;
+    margin-top: 5px !important;
+    margin-right: 5px !important;
+}
+
+.button-icon {
+    color: #e0e2ec !important;
+    background-color: #005cbb !important;
+    width: 40px !important;
+    height: 40px !important;
+    margin-right: 10px !important;
+}
+
+.button-theme {
+    color: #e0e2ec !important;
+    background-color: #005cbb !important;
+    width: 40px !important;
+    height: 40px !important;
+    margin-right: 10px !important;
+    position: absolute;
+    right: 0;
+}
+
+.icon-2x {
+    transform: scale(2);
+}
+
+.icon-3x {
+    transform: scale(3);
+}
+
+.is-active {
+    background-color: #D4E1F1 !important;
+}
+
+mat-progress-bar.mat-mdc-progress-bar {
+    --mdc-linear-progress-active-indicator-color: #ffabf3;
+    --mdc-linear-progress-track-color: #FFD7E1;
+    --mdc-linear-progress-active-indicator-height: 12px;
+    --mdc-linear-progress-track-height: 12px;
+}
+
+.imagen {
+    height: 100px;
+    width: 100px;
+}
+
+.button-back {
+    margin-right: 10px;
+}
+
+.red {
+    color: #cc241d;
+}
+
+.green {
+    color: #98971a;
+}
+
+.orange {
+    color: #d79921;
+}
+
+.is-selected {
+    background-color: #D4E1F1;
+    margin: 0.5 1.5em 0.5em 0.5em;
+    padding: 1em 0;
+}
+
+.modal-text {
+    text-align: center;
+    font-size: 23px !important;
+}
+
+.modal-title {
+    text-align: center;
+    font-size: 40px !important;
+}
+
+.button-mat {
+    color: #e0e2ec !important;
+    background-color: #005cbb !important;
+}
+
+.white-icon {
+    color: #e0e2ec;
+}
+
+.orange-icon {
+    color: #ebbf59;
+}
+
+.item-song:hover {
+    background-color: #E7E6EA;
+}
+
+.selected-song {
+    background-color: #DEDDE1;
+}
+
+.selected-playlist {
+    background-color: #262929;
+}
+
+.mat-mdc-slider {
+    --mdc-slider-handle-color: #005cbb;
+    --mdc-slider-focus-handle-color: #005cbb;
+    --mdc-slider-hover-handle-color: #005cbb;
+    --mdc-slider-active-track-color: #005cbb;
+    --mdc-slider-inactive-track-color: #005cbb;
+    --mdc-slider-with-tick-marks-active-container-color: #005cbb;
+    --mdc-slider-with-tick-marks-inactive-container-color: #005cbb;
+    --mat-mdc-slider-ripple-color: #005cbb;
+    --mdc-slider-disabled-handle-color: #005cbb;
+    --mdc-slider-disabled-active-track-color: #005cbb;
+    --mdc-slider-disabled-inactive-track-color: #005cbb;
+    --mdc-slider-with-tick-marks-disabled-container-color: #005cbb;
+    --mat-mdc-slider-value-indicator-opacity: 0.9;
+}
+
+.mat-slide-toggle.mat-disabled {
+    opacity: 1 !important;
+}

@@ -1,0 +1,82 @@
+.buttons-stations {
+    margin-top: 20px;
+}
+
+.contenedor {
+    margin-top: 20px;
+}
+
+.divider-espacio {
+    margin-top: 80px;
+    margin-bottom: 20px;
+}
+
+.button-filter {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.stations-filter {
+    width: 30vw;
+}
+
+.centrar-texto {
+    text-align: center !important;
+}
+
+.button-table {
+    margin-right: 10px;
+}
+
+.opcion-table {
+    padding-left: 50px;
+}
+
+.margin-button-new {
+    margin-left: 10px;
+}
+
+td,
+th {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+.mat-sort-header-container {
+    justify-content: center !important;
+}
+
+
+.left-btn {
+    float: left;
+}
+
+.right-btn {
+    float: right;
+}
+
+.file-input {
+    display: none;
+}
+
+.scrollbar-stations {
+    height: calc(70vh - 30px);
+    overflow: auto;
+}
+
+.loading-indicator {
+    position: fixed;
+    z-index: 999;
+    height: 2em;
+    width: 2em;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.stations-not-found {
+    margin-top: 20px;
+}

@@ -1,0 +1,45 @@
+<div class="buttons-theme">
+  <button class="button-theme" mat-fab (click)="clickChangeTheme()">
+    <mat-icon *ngIf="currentTheme==='light'">dark_mode</mat-icon>
+    <mat-icon *ngIf="currentTheme==='dark'">light_mode</mat-icon>
+  </button>
+</div>
+
+<div class="login-card">
+  <mat-card appearance="outlined">
+    <mat-card-title>Iniciar sesión</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="userForm" (ngSubmit)="submitForm()">
+        <div>
+          <mat-form-field>
+            <mat-label>Usuario</mat-label>
+            <input matInput placeholder="Usuario" formControlName="usuario" required />
+            <mat-error *ngIf="userForm?.get('usuario')?.invalid">
+              El usuario es obligatorio
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Contraseña</mat-label>
+            <input matInput [type]="hide() ? 'password' : 'text'" placeholder="Contraseña" formControlName="clave"
+              required />
+            <button type="button" mat-icon-button matSuffix (click)="clickEvent($event)"
+              [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide()">
+              <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="userForm?.get('clave')?.invalid">
+              La contraseña es obligatoria
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="button center-div">
+          <button type="submit" mat-flat-button [disabled]="(loading$ | async)"><mat-icon>login</mat-icon>
+            Iniciar</button>
+        </div>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,36 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <mat-list-item routerLink="/player/home" [routerLinkActive]="['is-active']"><mat-icon class="icon-item"
+          matListItemIcon>home</mat-icon> Inicio</mat-list-item>
+      <mat-list-item routerLink="/player/stations" [routerLinkActive]="['is-active']"><mat-icon class="icon-item"
+          matListItemIcon>radio</mat-icon> Estaciones</mat-list-item>
+      <mat-list-item routerLink="/player/scan" [routerLinkActive]="['is-active']"><mat-icon class="icon-item"
+          matListItemIcon>library_music</mat-icon> Escaneo</mat-list-item>
+      <mat-list-item routerLink="/player/sync" [routerLinkActive]="['is-active']"><mat-icon class="icon-item"
+          matListItemIcon>sync</mat-icon> Sincronización</mat-list-item>
+      <mat-list-item routerLink="/player/account" [routerLinkActive]="['is-active']"><mat-icon class="icon-item"
+          matListItemIcon>account_circle</mat-icon> Cuenta</mat-list-item>
+      <mat-list-item (click)="about()"><mat-icon class="icon-item" matListItemIcon>info</mat-icon> About</mat-list-item>
+      <mat-list-item (click)="logout()"><mat-icon class="icon-item" matListItemIcon>logout</mat-icon>
+        Salir</mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="title-menu" color="primary">
+      @if (isHandset$ | async) {
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      }
+      <span color="primary">Fast Music</span>
+      <button class="button-theme" mat-fab (click)="clickChangeTheme()">
+        <mat-icon *ngIf="currentTheme==='light'">dark_mode</mat-icon>
+        <mat-icon *ngIf="currentTheme==='dark'">light_mode</mat-icon>
+      </button>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

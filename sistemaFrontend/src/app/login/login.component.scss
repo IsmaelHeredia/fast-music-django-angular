@@ -1,0 +1,46 @@
+.login-card {
+  margin-left: 30%;
+  margin-right: 30%;
+  padding-top: 8%;
+}
+
+.input-card {
+  width: 100% !important;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+mat-card-title {
+  font-size: 40px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+mat-card-content {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+mat-form-field {
+  width: 30vw;
+  margin-bottom: 10px;
+}
+
+.buttons-theme {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
