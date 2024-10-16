@@ -183,7 +183,7 @@ export class SyncComponent {
   sync_from_gd(): void {
 
     const dialogRef = this.dialog.open(DialogConfirmDialog, {
-      height: '20%',
+      height: '30%',
       width: '60%',
       data: { content: 'Esta seguro de sincronizar desde Google Drive ?' },
     });
@@ -210,7 +210,7 @@ export class SyncComponent {
 
               this.sync_working = true;
 
-              console.log('se inicio sync con id ', this.sync_id);
+              //console.log('se inicio sync con id ', this.sync_id);
 
               this.startTimer();
 
@@ -234,7 +234,7 @@ export class SyncComponent {
   sync_from_pc(): void {
 
     const dialogRef = this.dialog.open(DialogConfirmDialog, {
-      height: '20%',
+      height: '30%',
       width: '60%',
       data: { content: 'Esta seguro de sincronizar desde PC ?' },
     });
@@ -261,7 +261,7 @@ export class SyncComponent {
 
               this.sync_working = true;
 
-              console.log('se inicio sync con id ', this.sync_id);
+              //console.log('se inicio sync con id ', this.sync_id);
 
               this.startTimer();
 
@@ -293,7 +293,7 @@ export class SyncComponent {
 
     this.timer = setInterval(() => {
 
-      console.log('cada 5 segundo consulto al timer de sync');
+      //console.log('cada 5 segundo consulto al timer de sync');
 
       this.syncService.getEstadoSincronizacion(this.sync_id).subscribe({
         next: (res: any) => {
@@ -310,7 +310,7 @@ export class SyncComponent {
             this.sync_status = status;
 
             if (status == 1) {
-              console.log('el estado de la sync es 1, termina');
+              //console.log('el estado de la sync es 1, termina');
               clearInterval(this.timer);
               this.loadingSubject.next(false);
             }
@@ -334,7 +334,7 @@ export class SyncComponent {
       this.sync_status = 0;
       this.sync_logs = "";
       //this.sync_working = false;
-      console.log('stop timer activado');
+      //('stop timer activado');
     }
   }
 

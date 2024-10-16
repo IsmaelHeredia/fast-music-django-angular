@@ -107,7 +107,7 @@ export class PlayerComponent {
 
   about(): void {
     this.dialog.open(DialogAbout, {
-      height: '30%',
+      height: '31%',
       width: '60%'
     });
   }

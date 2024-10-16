@@ -189,7 +189,7 @@ export class ScanComponent {
   scan(): void {
 
     const dialogRef = this.dialog.open(DialogConfirmDialog, {
-      height: '20%',
+      height: '30%',
       width: '60%',
       data: []
     });

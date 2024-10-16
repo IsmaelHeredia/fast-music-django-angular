@@ -32,13 +32,20 @@ class SyncGDAPIView(APIView):
         
         try:
             directory_base = os.path.dirname(os.path.dirname(__file__))
+            directory_base = directory_base.replace("\\","/")
             directory = "/".join(list(directory_base.split('/')[0:-1])) 
-            
             
             s = SyncLog.objects.create(logs = "Se inicio la sincronización por Google Drive", status = 0)
             sync_id = str(s.pk)
+            
+            python_cmd = None
+            
+            if os.name == "nt":
+                python_cmd = "python"
+            else:
+                python_cmd = "python3"
                         
-            subprocess.Popen(["python3","sync.py","-sync-from-drive","-id-sync",sync_id], cwd = directory)
+            subprocess.Popen([python_cmd,"sync.py","-sync-from-drive","-id-sync",sync_id], cwd = directory)
             
             dataResponse = {
                 'sync_id' : s.pk
@@ -70,13 +77,20 @@ class SyncPCAPIView(APIView):
         
         try:
             directory_base = os.path.dirname(os.path.dirname(__file__))
+            directory_base = directory_base.replace("\\","/")
             directory = "/".join(list(directory_base.split('/')[0:-1])) 
-            
             
             s = SyncLog.objects.create(logs = "Se inicio la sincronización por PC", status = 0)
             sync_id = str(s.pk)
+                       
+            python_cmd = None
+            
+            if os.name == "nt":
+                python_cmd = "python"
+            else:
+                python_cmd = "python3"
                         
-            subprocess.Popen(["python3","sync.py","-sync-from-pc","-id-sync",sync_id], cwd = directory)
+            subprocess.Popen([python_cmd,"sync.py","-sync-from-pc","-id-sync",sync_id], cwd = directory)
             
             dataResponse = {
                 'sync_id' : s.pk

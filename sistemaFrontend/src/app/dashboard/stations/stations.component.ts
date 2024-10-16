@@ -276,7 +276,7 @@ export class StationsComponent {
   openDialogConfirmDelete(id: number, nombre: string): void {
 
     const dialogRef = this.dialog.open(DialogConfirmDeleteDialog, {
-      height: '20%',
+      height: '25%',
       width: '60%',
       data: { id: id, name: nombre },
     });

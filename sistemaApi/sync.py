@@ -263,16 +263,17 @@ def sync_from_drive():
     print("\n[+] Cleaning files\n")
         
     for folder in folders:
-        files_pc = os.listdir(folder_pc + "/" + folder)
-        for file_pc in files_pc:
-            file_found = False
-            for file_gd in tree_gd:
-                if folder == file_gd["folder"] and file_pc == file_gd["file"]:
-                    file_found = True
-            if file_found == False:
-                filename_path = folder_pc + "/" + folder + "/" + file_pc
-                print("[!] Deleting file : %s" % (filename_path,))
-                os.remove(filename_path)
+        if os.path.isdir(folder_pc + "/" + folder):
+            files_pc = os.listdir(folder_pc + "/" + folder)
+            for file_pc in files_pc:
+                file_found = False
+                for file_gd in tree_gd:
+                    if folder == file_gd["folder"] and file_pc == file_gd["file"]:
+                        file_found = True
+                if file_found == False:
+                    filename_path = folder_pc + "/" + folder + "/" + file_pc
+                    print("[!] Deleting file : %s" % (filename_path,))
+                    os.remove(filename_path)
                         
     for file_gd in tree_gd:
         
