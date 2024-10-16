@@ -291,7 +291,7 @@ def sync_from_drive():
             
         downloadFile(id_drive, file, filename, md5)
         
-    update_logs("La sincronización con Google Drive se completo correctamente", 1)
+    update_logs("La sincronización con Google Drive se completó correctamente", 1)
                  
 def sync_from_pc():
 
@@ -410,7 +410,7 @@ def sync_from_pc():
                     #print("SE DETECTO %s" % (id_folder,))
                     uploadFile(id_folder, fullpath)
                     
-    update_logs("La sincronización local se completo correctamente", 1)
+    update_logs("La sincronización local se completó correctamente", 1)
                                                                                                                                                                      
 def main():
     
